@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Wing
   - Bug
+  - Body
+  - Obstacle
   layers:
   - Default
   - TransparentFX

@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Direction = WorldInfo.Direction;
+using Color = WorldInfo.Color;
 
 public class Wing : MonoBehaviour
 {
-    private Animator animator;
-    private FixedJoint2D joint;
-    private EdgeCollider2D collider;
-    private float breakForce;
-    private bool broken = false;
+    public Color color;
+    public Animator animator;
+    public FixedJoint2D joint;
+    public EdgeCollider2D collider;
+    public bool broken = false;
+    public Direction direction;
 
     // Start is called before the first frame update
     void Start()
@@ -16,19 +19,28 @@ public class Wing : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         collider = GetComponent<EdgeCollider2D>();
         joint = GetComponent<FixedJoint2D>();
-        breakForce = joint.breakForce;
     }
 
-    private void OnJointBreak2D(Joint2D j)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
+        MainBody.instance.Retract();
+        MainBody.instance.stunTimer = 0;
+        //Break();
+    }
+
+    /*
+    public void Break()
+    {
+        Destroy(joint);
         animator.Play("Extended");
         broken = true;
         transform.parent = null;
         animator.enabled = false;
-
+        if (MainBody.wings.Count == 0)
+            MainBody.collider.radius = 3.36f;
         MainBody.wings.Remove(this);
         MainBody.joints.Remove(joint);
         MainBody.animators.Remove(animator);
-        MainBody.breakForces.Remove(breakForce);
     }
+    */
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 596324719200663921}
   - component: {fileID: 5105082865262756509}
   - component: {fileID: 2011932980836996286}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bug
   m_TagString: Bug
   m_Icon: {fileID: 0}
@@ -63,6 +63,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   location: {fileID: 0}
   direction: 0
+  active: 1
+  mask:
+    serializedVersion: 2
+    m_Bits: 1527
 --- !u!1 &6918085753607642890
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Color = WorldInfo.Color;
 
 public class SceneStuff : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class SceneStuff : MonoBehaviour
     public static int blueNum = 1;
     public static int yellowNum = 1;
     public static int greenNum = 1;
-    public static Bug.bugColor selectedColor = Bug.bugColor.Red;
+    public static Color selectedColor = Color.Red;
     public static int[] colorNums = { redNum, blueNum, yellowNum, greenNum };
 
     private void Awake()
@@ -37,29 +38,29 @@ public class SceneStuff : MonoBehaviour
             }
         }
         if (found)
-            selectedColor = (Bug.bugColor)i;
+            selectedColor = (Color)i;
     }
 
     private void Update()
     {
         if (Input.GetButtonDown("Red") && colorNums[0] > 0)
         {
-            selectedColor = Bug.bugColor.Red;
+            selectedColor = Color.Red;
             print(selectedColor);
         }
         else if (Input.GetButtonDown("Blue") && colorNums[1] > 0)
         {
-            selectedColor = Bug.bugColor.Blue;
+            selectedColor = Color.Blue;
             print(selectedColor);
         }
         else if (Input.GetButtonDown("Yellow") && colorNums[2] > 0)
         {
-            selectedColor = Bug.bugColor.Yellow;
+            selectedColor = Color.Yellow;
             print(selectedColor);
         }
         else if (Input.GetButtonDown("Green") && colorNums[3] > 0)
         {
-            selectedColor = Bug.bugColor.Green;
+            selectedColor = Color.Green;
             print(selectedColor);
         }
     }

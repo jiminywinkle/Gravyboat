@@ -34,7 +34,6 @@ public class BugPlacer : MonoBehaviour
             mousePos = Camera.main.ScreenToWorldPoint(mousePos);
             mousePos.z = 0;
             GameObject bugs = Instantiate(SceneStuff.instance.bugs, mousePos, Quaternion.identity);
-            bugs.transform.eulerAngles = new Vector3(0, 0, Random.Range(0, 360f));
             Bug bugScript = bugs.GetComponent<Bug>();
             bugScript.location = gameObject;
             SceneStuff.colorNums[(int)SceneStuff.selectedColor]--;

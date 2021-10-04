@@ -17,7 +17,7 @@ public class Look : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (enabled)
+        if (enabled && !MainBody.dead)
         {
             mousePos = Input.mousePosition;
             mousePos.z = 0;
