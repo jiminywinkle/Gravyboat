@@ -8,15 +8,19 @@ public class SceneStuff : MonoBehaviour
     public static SceneStuff instance;
     public GameObject bugs;
     public GameObject TEST;
-    public static int redNum = 1;
-    public static int blueNum = 1;
-    public static int yellowNum = 1;
-    public static int greenNum = 1;
+    public int redNum = 1;
+    public int blueNum = 1;
+    public int yellowNum = 1;
+    public int greenNum = 1;
     public static Color selectedColor = Color.Red;
-    public static int[] colorNums = { redNum, blueNum, yellowNum, greenNum };
+    public int[] colorNums = new int[4];
 
     private void Awake()
     {
+        colorNums[0] = redNum;
+        colorNums[1] = blueNum;
+        colorNums[2] = yellowNum;
+        colorNums[3] = greenNum;
         instance = this;
     }
 

@@ -93,7 +93,7 @@ public class Bug : MonoBehaviour
         {
             Destroy(gameObject);
             Destroy(TEST);
-            SceneStuff.colorNums[(int)color]++;
+            SceneStuff.instance.colorNums[(int)color]++;
         }
         location.GetComponent<BugPlacer>().positions[(int)direction] = true;
         transform.eulerAngles = new Vector3(0, 0, Random.Range(0, 360f));
@@ -121,6 +121,8 @@ public class Bug : MonoBehaviour
                         {
                             if (wing.color == color)
                             {
+                                bool used = false;
+
                                 // Remember: Up, Down, Left, Right
                                 switch (direction)
                                 {
@@ -130,14 +132,17 @@ public class Bug : MonoBehaviour
                                             // Up and Up pushes body upward
                                             case (Direction)0:
                                                 MainBody.direction = Direction.Up;
+                                                used = true;
                                                 break;
                                             // Up and Left rotates body right
                                             case (Direction)2:
                                                 MainBody.instance.Rotate(true);
+                                                used = true;
                                                 break;
                                             // Up and Right rotates body left
                                             case (Direction)3:
                                                 MainBody.instance.Rotate(false);
+                                                used = true;
                                                 break;
                                         }
                                         break;
@@ -147,14 +152,17 @@ public class Bug : MonoBehaviour
                                             // Down and Down pushes body downward
                                             case (Direction)1:
                                                 MainBody.direction = Direction.Down;
+                                                used = true;
                                                 break;
                                             // Down and Left rotates body left
                                             case (Direction)2:
                                                 MainBody.instance.Rotate(false);
+                                                used = true;
                                                 break;
                                             // Down and Right rotates body right
                                             case (Direction)3:
                                                 MainBody.instance.Rotate(true);
+                                                used = true;
                                                 break;
                                         }
                                         break;
@@ -164,14 +172,17 @@ public class Bug : MonoBehaviour
                                             // Left and Up rotates body left
                                             case (Direction)0:
                                                 MainBody.instance.Rotate(false);
+                                                used = true;
                                                 break;
                                             // Left and Down rotates body right
                                             case (Direction)1:
                                                 MainBody.instance.Rotate(true);
+                                                used = true;
                                                 break;
                                             // Left and Left pushes body left
                                             case (Direction)2:
                                                 MainBody.direction = Direction.Left;
+                                                used = true;
                                                 break;
                                         }
                                         break;
@@ -181,19 +192,23 @@ public class Bug : MonoBehaviour
                                             // Right and Up rotates body right
                                             case (Direction)0:
                                                 MainBody.instance.Rotate(true);
+                                                used = true;
                                                 break;
                                             // Right and Down rotates body left
                                             case (Direction)1:
                                                 MainBody.instance.Rotate(false);
+                                                used = true;
                                                 break;
                                             // Right and Right pushes body right
                                             case (Direction)3:
                                                 MainBody.direction = Direction.Right;
+                                                used = true;
                                                 break;
                                         }
                                         break;
                                 }
-                                StartCoroutine(Deactivate());
+                                if (used)
+                                    StartCoroutine(Deactivate());
                                 break;
                             }
                         }
@@ -207,7 +222,6 @@ public class Bug : MonoBehaviour
     
     IEnumerator Deactivate()
     {
-        print("DEACTIVATING");
         active = false;
         while (deactivateCount > 0)
         {
@@ -215,16 +229,17 @@ public class Bug : MonoBehaviour
             light.intensity = deactivateCount;
             yield return null;
         }
+        light.intensity = 0;
     }
 
     private void OnMouseOver()
     {
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1) && active)
         {
             Destroy(this.gameObject);
             Destroy(TEST);
             location.GetComponent<BugPlacer>().positions[(int)direction] = false;
-            SceneStuff.colorNums[(int)color]++;
+            SceneStuff.instance.colorNums[(int)color]++;
         }
     }
 }
