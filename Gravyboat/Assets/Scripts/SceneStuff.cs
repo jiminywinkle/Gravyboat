@@ -31,18 +31,24 @@ public class SceneStuff : MonoBehaviour
 
     public void BugChecker()
     {
-        bool found = false;
-        int i = 0;
-        for (; i < colorNums.Length; i++)
+        if (colorNums[(int)selectedColor] < 1)
         {
-            if (colorNums[i] > 0)
+            bool found = false;
+            int i = 0;
+            for (; i < colorNums.Length; i++)
             {
-                found = true;
-                break;
+                if (colorNums[i] > 0)
+                {
+                    found = true;
+                    break;
+                }
+            }
+            if (found)
+            {
+                selectedColor = (Color)i;
+                UIBug.instance.ColorStuff(true);
             }
         }
-        if (found)
-            selectedColor = (Color)i;
     }
 
     private void Update()
@@ -50,22 +56,22 @@ public class SceneStuff : MonoBehaviour
         if (Input.GetButtonDown("Red") && colorNums[0] > 0)
         {
             selectedColor = Color.Red;
-            print(selectedColor);
+            UIBug.instance.ColorStuff(true);
         }
         else if (Input.GetButtonDown("Blue") && colorNums[1] > 0)
         {
             selectedColor = Color.Blue;
-            print(selectedColor);
+            UIBug.instance.ColorStuff(true);
         }
         else if (Input.GetButtonDown("Yellow") && colorNums[2] > 0)
         {
             selectedColor = Color.Yellow;
-            print(selectedColor);
+            UIBug.instance.ColorStuff(true);
         }
         else if (Input.GetButtonDown("Green") && colorNums[3] > 0)
         {
             selectedColor = Color.Green;
-            print(selectedColor);
+            UIBug.instance.ColorStuff(true);
         }
     }
 }

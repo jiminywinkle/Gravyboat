@@ -94,6 +94,7 @@ public class Bug : MonoBehaviour
             Destroy(gameObject);
             Destroy(TEST);
             SceneStuff.instance.colorNums[(int)color]++;
+            UIBug.instance.ColorStuff(false, 1, color);
         }
         location.GetComponent<BugPlacer>().positions[(int)direction] = true;
         transform.eulerAngles = new Vector3(0, 0, Random.Range(0, 360f));
@@ -107,8 +108,8 @@ public class Bug : MonoBehaviour
             //RaycastHit2D[] hit = Physics2D.CircleCastAll(transform.position, 2f, raycastDir, Mathf.Infinity, mask);
             Debug.DrawRay(transform.position, raycastDir * 10);
             RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, raycastDir, Mathf.Infinity, mask);
-            for (int j = 0; j < hit.Length; j++)
-                print(hit[j].collider.name);
+            //for (int j = 0; j < hit.Length; j++)
+            //    print(hit[j].collider.name);
             for (int i = 1; i < hit.Length; i++)
             {
                 if (hit[i].collider != null)
@@ -240,6 +241,7 @@ public class Bug : MonoBehaviour
             Destroy(TEST);
             location.GetComponent<BugPlacer>().positions[(int)direction] = false;
             SceneStuff.instance.colorNums[(int)color]++;
+            UIBug.instance.ColorStuff(false, 1, color);
         }
     }
 }

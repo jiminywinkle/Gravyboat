@@ -37,6 +37,7 @@ public class BugPlacer : MonoBehaviour
             Bug bugScript = bugs.GetComponent<Bug>();
             bugScript.location = gameObject;
             SceneStuff.instance.colorNums[(int)SceneStuff.selectedColor]--;
+            UIBug.instance.ColorStuff(false, -1, SceneStuff.selectedColor);
             CircleCollider2D collider = bugs.GetComponent<CircleCollider2D>();
             ContactFilter2D filter = new ContactFilter2D().NoFilter();
             List<Collider2D> results = new List<Collider2D>();
@@ -47,6 +48,7 @@ public class BugPlacer : MonoBehaviour
                 {
                     Destroy(bugs.gameObject);
                     SceneStuff.instance.colorNums[(int)SceneStuff.selectedColor]++;
+                    UIBug.instance.ColorStuff(false, 1, SceneStuff.selectedColor);
                     break;
                 }
             }
