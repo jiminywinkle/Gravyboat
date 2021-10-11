@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f4cd212ba6e38d42b2aad6649acd7e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  indicator: {fileID: 3751088698557074299, guid: d1eda5069aeb7264b91776333ae31d92, type: 3}
   bugs: {fileID: 6596368914185947142, guid: dbd4f5fb8f68b1246ac85c86bb2b22a5, type: 3}
   TEST: {fileID: 1066603044407190922, guid: e560f4fcf48cb614c9892883b1f223de, type: 3}
   redNum: 2

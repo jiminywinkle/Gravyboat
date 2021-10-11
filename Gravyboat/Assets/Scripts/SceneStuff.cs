@@ -1,18 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Color = WorldInfo.Color;
 
 public class SceneStuff : MonoBehaviour
 {
     public static SceneStuff instance;
+    public GameObject indicator;
     public GameObject bugs;
     public GameObject TEST;
+    public Vector3 startPos;
+    public Vector3 startRot;
+    public bool canQuit = true;
+    public float countdown;
     public int redNum = 1;
     public int blueNum = 1;
     public int yellowNum = 1;
     public int greenNum = 1;
     public static Color selectedColor = Color.Red;
+    [HideInInspector]
     public int[] colorNums = new int[4];
 
     private void Awake()
@@ -26,6 +33,11 @@ public class SceneStuff : MonoBehaviour
 
     public void Start()
     {
+        Indicator indicate = Instantiate(indicator).GetComponent<Indicator>();
+        indicate.startPos = startPos;
+        indicate.startRot = startRot;
+        indicate.countdown = countdown;
+
         BugChecker();
     }
 
@@ -72,6 +84,11 @@ public class SceneStuff : MonoBehaviour
         {
             selectedColor = Color.Green;
             UIBug.instance.ColorStuff(true);
+        }
+        else if (Input.GetButtonDown("Quit") && canQuit)
+        {
+            MainBody.instance.Clean();
+            SceneManager.LoadScene("Title");
         }
     }
 }

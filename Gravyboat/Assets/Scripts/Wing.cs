@@ -9,7 +9,7 @@ public class Wing : MonoBehaviour
     public Color color;
     public Animator animator;
     public FixedJoint2D joint;
-    public EdgeCollider2D collider;
+    public PolygonCollider2D collider;
     public bool broken = false;
     public Direction direction;
 
@@ -17,7 +17,7 @@ public class Wing : MonoBehaviour
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
-        collider = GetComponent<EdgeCollider2D>();
+        collider = GetComponent<PolygonCollider2D>();
         joint = GetComponent<FixedJoint2D>();
     }
 

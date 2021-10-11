@@ -9,13 +9,14 @@ public class MainBody : MonoBehaviour
     [HideInInspector]
     public static Direction direction;
     public Direction flyCommand = Direction.Right;
+    public static bool controllable = false;
     public static bool dead = false;
     public static bool flying = true;
     public static MainBody instance;
     public static List<Wing> wings = new List<Wing>();
     public static List<Animator> animators = new List<Animator>();
     //public static List<FixedJoint2D> joints = new List<FixedJoint2D>();
-    public static List<EdgeCollider2D> colliders = new List<EdgeCollider2D>();
+    public static List<PolygonCollider2D> colliders = new List<PolygonCollider2D>();
     public static CircleCollider2D collider;
     public GameObject body;
     public GameObject eyeWhite;
@@ -48,7 +49,7 @@ public class MainBody : MonoBehaviour
         {
             animators.Add(wings[i].GetComponentInChildren<Animator>());
             //joints.Add(wings[i].GetComponent<FixedJoint2D>());
-            colliders.Add(wings[i].GetComponent<EdgeCollider2D>());
+            colliders.Add(wings[i].GetComponent<PolygonCollider2D>());
         }
         collider = GetComponent<CircleCollider2D>();
         rigid = GetComponent<Rigidbody2D>();
@@ -97,7 +98,7 @@ public class MainBody : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!dead)
+        if (!dead && controllable)
         {
             if (laserTimer > 0)
             {
@@ -270,5 +271,18 @@ public class MainBody : MonoBehaviour
         }
         rigid.freezeRotation = true;
         rotating = false;
+    }
+
+    /// <summary>
+    /// Clear all of the static info on a scene reload. Honestly not sure why I need to do this, but it prevents errors
+    /// </summary>
+    public void Clean()
+    {
+        controllable = false;
+        dead = false;
+        flying = true;
+        wings.Clear();
+        animators.Clear();
+        colliders.Clear();
     }
 }

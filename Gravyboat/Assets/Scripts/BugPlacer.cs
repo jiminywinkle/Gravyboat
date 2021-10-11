@@ -17,7 +17,10 @@ public class BugPlacer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        // Just so that you don't have to change the mask sprite in the inspecter
+        SpriteMask mask = GetComponent<SpriteMask>();
+        SpriteRenderer renderer = GetComponent<SpriteRenderer>();
+        mask.sprite = renderer.sprite;
     }
 
     // Update is called once per frame
@@ -32,7 +35,8 @@ public class BugPlacer : MonoBehaviour
         {
             mousePos = Input.mousePosition;
             mousePos = Camera.main.ScreenToWorldPoint(mousePos);
-            mousePos.z = 0;
+            // THIS IS VERY IMPORTANT. It allows the mouse to always hit the bug's collider primarily instead of the obstacle
+            mousePos.z = -.1f;
             GameObject bugs = Instantiate(SceneStuff.instance.bugs, mousePos, Quaternion.identity);
             Bug bugScript = bugs.GetComponent<Bug>();
             bugScript.location = gameObject;
