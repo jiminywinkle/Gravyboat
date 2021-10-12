@@ -12,6 +12,8 @@ public class SceneStuff : MonoBehaviour
     public GameObject TEST;
     public Vector3 startPos;
     public Vector3 startRot;
+    public bool bugsPlacable = true;
+    public bool clickableIndicator = true;
     public bool canQuit = true;
     public float countdown;
     public int redNum = 1;
@@ -37,6 +39,7 @@ public class SceneStuff : MonoBehaviour
         indicate.startPos = startPos;
         indicate.startRot = startRot;
         indicate.countdown = countdown;
+        indicate.clickable = clickableIndicator;
 
         BugChecker();
     }

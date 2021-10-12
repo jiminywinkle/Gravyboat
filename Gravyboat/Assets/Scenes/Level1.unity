@@ -3227,6 +3227,10 @@ PrefabInstance:
       value: 59.3
       objectReference: {fileID: 0}
     - target: {fileID: 4812292976884989329, guid: 9c40b636c189ab04390eb6d283f2c06f, type: 3}
+      propertyPath: bugsPlacable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4812292976884989329, guid: 9c40b636c189ab04390eb6d283f2c06f, type: 3}
       propertyPath: mouseMask.m_Bits
       value: 0
       objectReference: {fileID: 0}
@@ -4817,6 +4821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9e9e73e92927ed41b798910a0e45178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destinationScene: Title
 --- !u!1001 &1210543748
 PrefabInstance:
   m_ObjectHideFlags: 0

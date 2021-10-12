@@ -31,7 +31,7 @@ public class BugPlacer : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (SceneStuff.instance.colorNums[(int)SceneStuff.selectedColor] > 0)
+        if (SceneStuff.instance.colorNums[(int)SceneStuff.selectedColor] > 0 && SceneStuff.instance.bugsPlacable)
         {
             mousePos = Input.mousePosition;
             mousePos = Camera.main.ScreenToWorldPoint(mousePos);

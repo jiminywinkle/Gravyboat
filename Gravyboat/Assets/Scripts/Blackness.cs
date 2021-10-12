@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Blackness : MonoBehaviour
 {
+    public string destinationScene;
     private Image image;
     private float opacity = 1;
 
@@ -45,7 +46,7 @@ public class Blackness : MonoBehaviour
                 yield return null;
             }
             MainBody.instance.Clean();
-            SceneManager.LoadScene("Title");
+            SceneManager.LoadScene(destinationScene);
         }
     }
 }

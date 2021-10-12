@@ -8,6 +8,7 @@ using Direction = WorldInfo.Direction;
 public class Indicator : MonoBehaviour
 {
     public float countdown;
+    public bool clickable;
     public Direction direction;
     public Vector3 startPos = Vector3.zero;
     public Vector3 startRot = Vector3.zero;
@@ -44,7 +45,8 @@ public class Indicator : MonoBehaviour
         }
 
         StartCoroutine(Move());
-        StartCoroutine(Begin());
+        if (countdown != 0)
+            StartCoroutine(Begin());
     }
 
     IEnumerator Move()
@@ -90,6 +92,10 @@ public class Indicator : MonoBehaviour
 
     private void OnMouseDown()
     {
-        countdown = 0;
+        if (clickable)
+        {
+            Destroy(gameObject);
+            MainBody.controllable = true;
+        }
     }
 }
