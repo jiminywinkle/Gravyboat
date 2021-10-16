@@ -28,7 +28,7 @@ public class MainMenu : MonoBehaviour
 
     public void Begin()
     {
-        SceneManager.LoadScene("Tutorial");
+        SceneManager.LoadScene("Level1");
     }
 
     public void Levels()

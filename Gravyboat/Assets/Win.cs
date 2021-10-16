@@ -8,7 +8,6 @@ public class Win : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print(true);
         if (collision.tag == "Body")
             black.Win();
     }

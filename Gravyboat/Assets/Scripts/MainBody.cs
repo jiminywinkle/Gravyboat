@@ -120,6 +120,28 @@ public class MainBody : MonoBehaviour
                 {
                     Retract();
                 }
+
+                if (WorldInfo.laserUnlocked)
+                {
+                    if (Input.GetButtonDown("Laser") && laserTimer <= 0)
+                    {
+                        eyeLight.intensity = 5;
+                        laserTimer = 1;
+                        GameObject shot = Instantiate(laser, pupil.transform.position, Quaternion.identity);
+                    }
+                }
+
+                if (!flying)
+                {
+                    if (Input.GetButton("RollLeft"))
+                    {
+                        rigid.AddTorque(12f);
+                    }
+                    else if (Input.GetButton("RollRight"))
+                    {
+                        rigid.AddTorque(-12f);
+                    }
+                }
             }
 
             if (flying)
@@ -143,16 +165,6 @@ public class MainBody : MonoBehaviour
                     case (Direction)3:
                         rigid.velocity = new Vector2(moveSpeed, 0);
                         break;
-                }
-            }
-
-            if (WorldInfo.laserUnlocked)
-            {
-                if (Input.GetButtonDown("Laser") && laserTimer <= 0)
-                {
-                    eyeLight.intensity = 5;
-                    laserTimer = 1;
-                    GameObject shot = Instantiate(laser, pupil.transform.position, Quaternion.identity);
                 }
             }
         }

@@ -6,6 +6,7 @@ using Color = WorldInfo.Color;
 
 public class SceneStuff : MonoBehaviour
 {
+    public static List<int> levelsSeen = new List<int>();
     public static SceneStuff instance;
     public GameObject indicator;
     public GameObject bugs;
@@ -35,6 +36,9 @@ public class SceneStuff : MonoBehaviour
 
     public void Start()
     {
+        if (!levelsSeen.Contains(SceneManager.GetActiveScene().buildIndex))
+            levelsSeen.Add(SceneManager.GetActiveScene().buildIndex);
+
         Indicator indicate = Instantiate(indicator).GetComponent<Indicator>();
         indicate.startPos = startPos;
         indicate.startRot = startRot;

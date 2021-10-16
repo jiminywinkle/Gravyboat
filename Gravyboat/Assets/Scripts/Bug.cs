@@ -14,6 +14,7 @@ public class Bug : MonoBehaviour
     public bool active = true;
     private WorldInfo.Color color;
     private Light2D light;
+    private SpriteRenderer sprite;
     private Vector3 raycastDir;
     private float deactivateCount = 1f;
 
@@ -29,6 +30,7 @@ public class Bug : MonoBehaviour
     {
         color = SceneStuff.selectedColor;
         light = GetComponentInChildren<Light2D>();
+        sprite = GetComponentInChildren<SpriteRenderer>();
 
         switch (color)
         {
@@ -60,25 +62,25 @@ public class Bug : MonoBehaviour
         {
             direction = Direction.Up;
             raycastDir = transform.up;
-            TEST = Instantiate(SceneStuff.instance.TEST, new Vector3(transform.position.x, transform.position.y + 5, 0), Quaternion.Euler(0, 0, 90));
+            TEST = Instantiate(SceneStuff.instance.TEST, new Vector3(transform.position.x, transform.position.y + 10, 0), Quaternion.Euler(0, 0, 90));
         }
         else if (transform.position.y < bottomSection)
         {
             direction = Direction.Down;
             raycastDir = -transform.up;
-            TEST = Instantiate(SceneStuff.instance.TEST, new Vector3(transform.position.x, transform.position.y - 5, 0), Quaternion.Euler(0, 0, -90));
+            TEST = Instantiate(SceneStuff.instance.TEST, new Vector3(transform.position.x, transform.position.y - 10, 0), Quaternion.Euler(0, 0, -90));
         }
         else if (transform.position.x > midPoint)
         {
             direction = Direction.Right;
             raycastDir = transform.right;
-            TEST = Instantiate(SceneStuff.instance.TEST, new Vector3(transform.position.x + 5, transform.position.y, 0), Quaternion.Euler(0, 0, 0));
+            TEST = Instantiate(SceneStuff.instance.TEST, new Vector3(transform.position.x + 10, transform.position.y, 0), Quaternion.Euler(0, 0, 0));
         }
         else
         {
             direction = Direction.Left;
             raycastDir = -transform.right;
-            TEST = Instantiate(SceneStuff.instance.TEST, new Vector3(transform.position.x - 5, transform.position.y, 0), Quaternion.Euler(0, 0, 180));
+            TEST = Instantiate(SceneStuff.instance.TEST, new Vector3(transform.position.x - 10, transform.position.y, 0), Quaternion.Euler(0, 0, 180));
         }
 
         //print("Top: " + location.transform.position.x.ToString() + " " + topSection.ToString() + " " + 0);
@@ -227,10 +229,13 @@ public class Bug : MonoBehaviour
         while (deactivateCount > 0)
         {
             deactivateCount -= (1 * Time.deltaTime) / 2;
+            sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, deactivateCount);
             light.intensity = deactivateCount;
             yield return null;
         }
-        light.intensity = 0;
+        location.GetComponent<BugPlacer>().positions[(int)direction] = false;
+        Destroy(TEST);
+        Destroy(this.gameObject);
     }
 
     private void OnMouseOver()

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Experimental.Rendering.Universal;
 using TMPro;
 using Direction = WorldInfo.Direction;
 
@@ -16,7 +17,7 @@ public class Indicator : MonoBehaviour
     public GameObject icon;
     public Transform moveSpot;
     private SpriteRenderer sprite;
-    private TextMeshPro text;
+    private Light2D light;
 
     private bool forward = true;
     private float moveTimer = 0;
@@ -24,7 +25,7 @@ public class Indicator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        text = GetComponent<TextMeshPro>();
+        light = GetComponentInChildren<Light2D>();
 
         transform.position = startPos;
         transform.eulerAngles = startRot;
@@ -80,14 +81,26 @@ public class Indicator : MonoBehaviour
 
     IEnumerator Begin()
     {
+        StartCoroutine(Flash());
         while (countdown > 0)
         {
             countdown -= 1 * Time.deltaTime;
-            text.text = (Mathf.Round(countdown * 10f) * .1f).ToString();
             yield return null;
         }
         Destroy(gameObject);
         MainBody.controllable = true;
+    }
+
+    IEnumerator Flash()
+    {
+        while (true)
+        {
+            if (light.enabled)
+                light.enabled = false;
+            else
+                light.enabled = true;
+            yield return new WaitForSeconds(countdown / 10);
+        }
     }
 
     private void OnMouseDown()
