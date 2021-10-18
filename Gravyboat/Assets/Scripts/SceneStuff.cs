@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Color = WorldInfo.Color;
+using Direciton = WorldInfo.Direction;
 
 public class SceneStuff : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class SceneStuff : MonoBehaviour
     public GameObject TEST;
     public Vector3 startPos;
     public Vector3 startRot;
+    public Direciton indicatorDirection;
     public bool bugsPlacable = true;
     public bool clickableIndicator = true;
     public bool canQuit = true;
@@ -40,11 +42,22 @@ public class SceneStuff : MonoBehaviour
             levelsSeen.Add(SceneManager.GetActiveScene().buildIndex);
 
         Indicator indicate = Instantiate(indicator).GetComponent<Indicator>();
+        indicate.direction = indicatorDirection;
         indicate.startPos = startPos;
         indicate.startRot = startRot;
         indicate.countdown = countdown;
         indicate.clickable = clickableIndicator;
 
+        StartCoroutine(FirstCheck());
+    }
+
+    /// <summary>
+    /// This is needed to make sure that the first BugCheck is performed after UIBug is fully initialized. Simply using Awake still ignores dependencies
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator FirstCheck()
+    {
+        yield return new WaitForEndOfFrame();
         BugChecker();
     }
 

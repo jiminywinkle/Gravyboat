@@ -17,8 +17,7 @@ public class UIBug : MonoBehaviour
         instance = this;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         selected = images[0];
 
@@ -35,7 +34,6 @@ public class UIBug : MonoBehaviour
 
         for (int i = 0; i < 4; i++)
             texts[i].text = SceneStuff.instance.colorNums[i].ToString();
-        
     }
 
     // Update is called once per frame

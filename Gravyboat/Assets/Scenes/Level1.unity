@@ -3561,6 +3561,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BoundingBox
       objectReference: {fileID: 0}
+    - target: {fileID: 208436770809420298, guid: 62023645718340a43a1f7b9c7b8fd374, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2960465434248429478, guid: 62023645718340a43a1f7b9c7b8fd374, type: 3}
       propertyPath: m_RootOrder
       value: 9
