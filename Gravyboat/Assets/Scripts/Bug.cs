@@ -109,7 +109,7 @@ public class Bug : MonoBehaviour
         {
             //RaycastHit2D[] hit = Physics2D.CircleCastAll(transform.position, 2f, raycastDir, Mathf.Infinity, mask);
             Debug.DrawRay(transform.position, raycastDir * 10);
-            RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, raycastDir, Mathf.Infinity, mask);
+            RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, raycastDir, 100, mask);
             //for (int j = 0; j < hit.Length; j++)
             //    print(hit[j].collider.name);
             for (int i = 1; i < hit.Length; i++)

@@ -4817,7 +4817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9e9e73e92927ed41b798910a0e45178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destinationScene: Title
+  destinationScene: Cut2
 --- !u!1001 &1210543748
 PrefabInstance:
   m_ObjectHideFlags: 0

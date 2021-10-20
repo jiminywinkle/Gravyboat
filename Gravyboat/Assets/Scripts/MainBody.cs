@@ -121,7 +121,7 @@ public class MainBody : MonoBehaviour
                     Retract();
                 }
 
-                if (WorldInfo.laserUnlocked)
+                if (SceneStuff.instance.laser)
                 {
                     if (Input.GetButtonDown("Laser") && laserTimer <= 0)
                     {

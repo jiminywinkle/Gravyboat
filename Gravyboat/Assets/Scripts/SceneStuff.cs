@@ -15,6 +15,7 @@ public class SceneStuff : MonoBehaviour
     public Vector3 startPos;
     public Vector3 startRot;
     public Direciton indicatorDirection;
+    public bool laser;
     public bool bugsPlacable = true;
     public bool clickableIndicator = true;
     public bool canQuit = true;

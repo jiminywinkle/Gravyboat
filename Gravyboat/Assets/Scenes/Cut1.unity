@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 130081666}
   - component: {fileID: 130081665}
   m_Layer: 0
-  m_Name: S_Before
+  m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -547,6 +547,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 76e9ae19e4502e64e9c8c128a275cbee, type: 3}
   - {fileID: 21300000, guid: ba1045e2dcdabd144a951f0690fe7924, type: 3}
   black: {fileID: 1152921338}
+  location: Title
 --- !u!4 &2060322868
 Transform:
   m_ObjectHideFlags: 0
