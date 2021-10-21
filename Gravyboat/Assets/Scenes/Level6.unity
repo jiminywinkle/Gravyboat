@@ -455,7 +455,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2315954372107906017, guid: 1b4faaf861c6e2c49a30d4d75e297141, type: 3}
       propertyPath: moveSpeed
-      value: 25
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 2315954372107906017, guid: 1b4faaf861c6e2c49a30d4d75e297141, type: 3}
       propertyPath: flyCommand
@@ -1249,19 +1249,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4812292976884989329, guid: 9c40b636c189ab04390eb6d283f2c06f, type: 3}
       propertyPath: redNum
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4812292976884989329, guid: 9c40b636c189ab04390eb6d283f2c06f, type: 3}
       propertyPath: blueNum
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4812292976884989329, guid: 9c40b636c189ab04390eb6d283f2c06f, type: 3}
       propertyPath: greenNum
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4812292976884989329, guid: 9c40b636c189ab04390eb6d283f2c06f, type: 3}
       propertyPath: countdown
-      value: 20
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4812292976884989329, guid: 9c40b636c189ab04390eb6d283f2c06f, type: 3}
       propertyPath: yellowNum
@@ -3526,5 +3526,6 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 93c86b4d3ab1480458a065ae023d0b1a, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8034809261094661037, guid: 8bfdf5a0af574b84fb6f193417affa7b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8bfdf5a0af574b84fb6f193417affa7b, type: 3}

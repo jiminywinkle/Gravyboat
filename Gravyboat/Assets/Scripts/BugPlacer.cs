@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
 
@@ -16,10 +15,13 @@ public class BugPlacer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Just so that you don't have to change the mask sprite in the inspecter
+        // Just so that you don't have to change the mask or light sprite in the inspecter
         SpriteMask mask = GetComponent<SpriteMask>();
         SpriteRenderer renderer = GetComponent<SpriteRenderer>();
         mask.sprite = renderer.sprite;
+
+        // Add the color cycling effect so that you don't have to :D
+        gameObject.AddComponent<ColorMat>();
     }
 
     // Update is called once per frame

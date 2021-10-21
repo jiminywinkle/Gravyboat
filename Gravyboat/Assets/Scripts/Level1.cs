@@ -29,7 +29,7 @@ public class Level1 : MonoBehaviour
         }
         if (text2)
         {
-            if (gravyPos.x < 15)
+            if (gravyPos.x < 50)
             {
                 text2.enabled = true;
             }

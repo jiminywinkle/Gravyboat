@@ -48,8 +48,6 @@ public class Bug : MonoBehaviour
                 break;
         }
 
-        SceneStuff.instance.BugChecker();
-
         SpriteRenderer locationSprite = location.GetComponent<SpriteRenderer>();
         midPoint = location.transform.position.x;
         topSection = location.transform.position.y + (locationSprite.bounds.extents.y / 2);
@@ -98,6 +96,9 @@ public class Bug : MonoBehaviour
             SceneStuff.instance.colorNums[(int)color]++;
             UIBug.instance.ColorStuff(false, 1, color);
         }
+
+        SceneStuff.instance.BugChecker();
+
         location.GetComponent<BugPlacer>().positions[(int)direction] = true;
         transform.eulerAngles = new Vector3(0, 0, Random.Range(0, 360f));
     }
@@ -109,7 +110,7 @@ public class Bug : MonoBehaviour
         {
             //RaycastHit2D[] hit = Physics2D.CircleCastAll(transform.position, 2f, raycastDir, Mathf.Infinity, mask);
             Debug.DrawRay(transform.position, raycastDir * 10);
-            RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, raycastDir, 100, mask);
+            RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, raycastDir, 80, mask);
             //for (int j = 0; j < hit.Length; j++)
             //    print(hit[j].collider.name);
             for (int i = 1; i < hit.Length; i++)
@@ -247,6 +248,26 @@ public class Bug : MonoBehaviour
             location.GetComponent<BugPlacer>().positions[(int)direction] = false;
             SceneStuff.instance.colorNums[(int)color]++;
             UIBug.instance.ColorStuff(false, 1, color);
+        }
+    }
+
+    public void ForceColor(WorldInfo.Color chosen)
+    {
+        color = chosen;
+        switch (color)
+        {
+            case WorldInfo.Color.Red:
+                light.color = new Color(255, 0, 0);
+                break;
+            case WorldInfo.Color.Blue:
+                light.color = new Color(0, 0, 255);
+                break;
+            case WorldInfo.Color.Yellow:
+                light.color = new Color(255, 255, 0);
+                break;
+            case WorldInfo.Color.Green:
+                light.color = new Color(0, 255, 0);
+                break;
         }
     }
 }
