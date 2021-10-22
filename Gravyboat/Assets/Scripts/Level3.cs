@@ -19,7 +19,7 @@ public class Level3 : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             MainBody.instance.Clean();
-            SceneManager.LoadScene("Level4");
+            SceneManager.LoadScene("Explain1");
         }
     }
 }

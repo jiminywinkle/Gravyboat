@@ -6,6 +6,7 @@ using UnityEngine.Experimental.Rendering.Universal;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
 using Direction = WorldInfo.Direction;
+using Vector2 = UnityEngine.Vector2;
 
 public class Bug : MonoBehaviour
 {
@@ -119,7 +120,7 @@ public class Bug : MonoBehaviour
                 {
                     if (hit[i].collider.tag == "Obstacle")
                         return;
-                    else if (hit[i].collider.tag == "Wing" || hit[i].collider.tag == "Body")
+                    else if ((hit[i].collider.tag == "Wing" && Vector2.Distance(hit[i].point, MainBody.instance.gameObject.transform.position) < 7.5f) || hit[i].collider.tag == "Body")
                     {
                         foreach (Wing wing in MainBody.wings)
                         {
