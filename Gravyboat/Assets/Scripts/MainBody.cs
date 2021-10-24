@@ -98,74 +98,81 @@ public class MainBody : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!dead && controllable)
+        if (controllable)
         {
-            if (laserTimer > 0)
+            if (!dead)
             {
-                eyeLight.intensity -= 5 * Time.deltaTime;
-                laserTimer -= 1 * Time.deltaTime;
+                if (laserTimer > 0)
+                {
+                    eyeLight.intensity -= 5 * Time.deltaTime;
+                    laserTimer -= 1 * Time.deltaTime;
+                }
+
+                if (stunTimer < 1f)
+                    stunTimer += 1 * Time.deltaTime;
+                else
+                {
+                    // Grabs an arbitrary animator from the wings to check the animation state
+                    if (Input.GetButton("Extend") && animators[0].GetCurrentAnimatorStateInfo(0).IsName("Retracted"))
+                    {
+                        Extend();
+
+                    }
+                    else if (Input.GetButton("Retract") && animators[0].GetCurrentAnimatorStateInfo(0).IsName("Extended"))
+                    {
+                        Retract();
+                    }
+
+                    if (SceneStuff.instance.laser)
+                    {
+                        if (Input.GetButtonDown("Laser") && laserTimer <= 0)
+                        {
+                            eyeLight.intensity = 5;
+                            laserTimer = 1;
+                            GameObject shot = Instantiate(laser, pupil.transform.position, Quaternion.identity);
+                        }
+                    }
+
+                    if (!flying)
+                    {
+                        if (Input.GetButton("RollLeft"))
+                        {
+                            rigid.AddTorque(12f);
+                        }
+                        else if (Input.GetButton("RollRight"))
+                        {
+                            rigid.AddTorque(-12f);
+                        }
+                    }
+                }
+
+                if (flying)
+                {
+                    //if (Input.GetKeyDown(KeyCode.M))
+                    //    Rotate(true);
+                    //else if (Input.GetKeyDown(KeyCode.N))
+                    //    Rotate(false);
+
+                    switch (direction)
+                    {
+                        case (Direction)0:
+                            rigid.velocity = new Vector2(0, moveSpeed);
+                            break;
+                        case (Direction)1:
+                            rigid.velocity = new Vector2(0, -moveSpeed);
+                            break;
+                        case (Direction)2:
+                            rigid.velocity = new Vector2(-moveSpeed, 0);
+                            break;
+                        case (Direction)3:
+                            rigid.velocity = new Vector2(moveSpeed, 0);
+                            break;
+                    }
+                }
             }
-
-            if (stunTimer < 1f)
-                stunTimer += 1 * Time.deltaTime;
-            else
+            else if (animators[0].GetCurrentAnimatorStateInfo(0).IsName("Extended"))
             {
-                // Grabs an arbitrary animator from the wings to check the animation state
-                if (Input.GetButton("Extend") && animators[0].GetCurrentAnimatorStateInfo(0).IsName("Retracted"))
-                {
-                    Extend();
-
-                }
-                else if (Input.GetButton("Retract") && animators[0].GetCurrentAnimatorStateInfo(0).IsName("Extended"))
-                {
-                    Retract();
-                }
-
-                if (SceneStuff.instance.laser)
-                {
-                    if (Input.GetButtonDown("Laser") && laserTimer <= 0)
-                    {
-                        eyeLight.intensity = 5;
-                        laserTimer = 1;
-                        GameObject shot = Instantiate(laser, pupil.transform.position, Quaternion.identity);
-                    }
-                }
-
-                if (!flying)
-                {
-                    if (Input.GetButton("RollLeft"))
-                    {
-                        rigid.AddTorque(12f);
-                    }
-                    else if (Input.GetButton("RollRight"))
-                    {
-                        rigid.AddTorque(-12f);
-                    }
-                }
-            }
-
-            if (flying)
-            {
-                //if (Input.GetKeyDown(KeyCode.M))
-                //    Rotate(true);
-                //else if (Input.GetKeyDown(KeyCode.N))
-                //    Rotate(false);
-
-                switch (direction)
-                {
-                    case (Direction)0:
-                        rigid.velocity = new Vector2(0, moveSpeed);
-                        break;
-                    case (Direction)1:
-                        rigid.velocity = new Vector2(0, -moveSpeed);
-                        break;
-                    case (Direction)2:
-                        rigid.velocity = new Vector2(-moveSpeed, 0);
-                        break;
-                    case (Direction)3:
-                        rigid.velocity = new Vector2(moveSpeed, 0);
-                        break;
-                }
+                Retract();
             }
         }
     }
