@@ -95,6 +95,30 @@ public class MainBody : MonoBehaviour
             collider.radius = 5.5f;
     }
 
+    void FixedUpdate()
+    {
+        if(controllable)
+        {
+            if (!dead)
+            {
+                if (!flying)
+                {
+                    if (stunTimer >= 1f)
+                    {
+                        if (Input.GetButton("RollLeft"))
+                        {
+                            rigid.AddTorque(100f);
+                        }
+                        else if (Input.GetButton("RollRight"))
+                        {
+                            rigid.AddTorque(-100f);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -130,18 +154,6 @@ public class MainBody : MonoBehaviour
                             eyeLight.intensity = 5;
                             laserTimer = 1;
                             GameObject shot = Instantiate(laser, pupil.transform.position, Quaternion.identity);
-                        }
-                    }
-
-                    if (!flying)
-                    {
-                        if (Input.GetButton("RollLeft"))
-                        {
-                            rigid.AddTorque(12f);
-                        }
-                        else if (Input.GetButton("RollRight"))
-                        {
-                            rigid.AddTorque(-12f);
                         }
                     }
                 }

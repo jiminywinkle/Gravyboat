@@ -21,12 +21,15 @@ public class Chain : MonoBehaviour
         transform.eulerAngles = Vector3.zero;
 
         startLink = transform.GetChild(0).gameObject;
-        for (int i = 0; i < linkCount; i++)
+        int i = 0;
+        for (; i < linkCount; i++)
         {
             if (i == 0)
                 prevLink = startLink;
             GameObject newLink = Instantiate(link, new Vector3(prevLink.transform.position.x, prevLink.transform.position.y - 3.75f, 0), Quaternion.identity, transform);
             Link linkLink = newLink.GetComponent<Link>();
+            linkLink.index = i;
+            linkLink.chain = this;
             links.Add(linkLink);
             HingeJoint2D hinge = newLink.GetComponent<HingeJoint2D>();
             hinge.connectedBody = prevLink.GetComponent<Rigidbody2D>();
@@ -34,10 +37,10 @@ public class Chain : MonoBehaviour
             prevLink = newLink;
         }
 
-        for (int i = 0; i < links.Count - 1; i++)
+        for (int j = 0; j < links.Count - 1; j++)
         {
-            for (int j = i + 1; j < links.Count; j++)
-               links[i].links.Add(links[j]);
+            for (int k = j + 1; k < links.Count; k++)
+               links[j].links.Add(links[k]);
         }
 
         if (hookEnd)
@@ -51,5 +54,23 @@ public class Chain : MonoBehaviour
         }
 
         transform.eulerAngles = startRot;
+    }
+
+    /// <summary>
+    /// Remove all subsequent link references from every remaining link once a break has been made in the chain
+    /// </summary>
+    /// <param name="index"></param>
+    public void Purge(int index)
+    {
+        for (int i = 0; i < index; i++)
+        {
+            Link linkLink = links[i].GetComponent<Link>();
+            List<Link> newList = new List<Link>();
+            for (int j = 0; j < index; j++)
+            {
+                newList.Add(links[j]);
+            }
+            linkLink.links = newList;
+        }
     }
 }

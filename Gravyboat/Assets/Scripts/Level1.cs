@@ -33,7 +33,7 @@ public class Level1 : MonoBehaviour
             {
                 text2.enabled = true;
             }
-            if (gravyPos.y < 13)
+            if (gravyPos.y < 20)
             {
                 text3.enabled = true;
                 text4.enabled = true;

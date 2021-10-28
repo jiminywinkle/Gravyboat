@@ -29,6 +29,7 @@ public class BoxBreak : MonoBehaviour
                 {
                     children[i].transform.parent = null;
                     children[i].gameObject.SetActive(true);
+                    children[i].layer = LayerMask.NameToLayer("Debris");
                     Rigidbody2D childrig = children[i].GetComponent<Rigidbody2D>();
                     childrig.AddForce((transform.position - collision.transform.position) * 5, ForceMode2D.Impulse);
                     childrig.AddTorque(Random.Range(-5, 5));

@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Link : MonoBehaviour
 {
+    public int index;
     public bool dead = false;
     public List<Link> links = new List<Link>();
+    public Chain chain;
     private HingeJoint2D hinge;
     private Rigidbody2D rigid;
     private SpriteRenderer sprite;
@@ -41,8 +43,13 @@ public class Link : MonoBehaviour
                 {
                     Destroy(hinge);
                     dead = true;
+                    gameObject.layer = LayerMask.NameToLayer("Debris");
                     foreach (Link link in links)
+                    {
                         link.dead = true;
+                        link.gameObject.layer = LayerMask.NameToLayer("Debris");
+                    }
+                    chain.Purge(index);
                 }
             }
         }
