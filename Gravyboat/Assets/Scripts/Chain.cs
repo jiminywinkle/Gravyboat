@@ -6,7 +6,10 @@ public class Chain : MonoBehaviour
 {
     public GameObject hook;
     public GameObject link;
+    public GameObject carryObject;
+    public Vector3 carryPlace;
     public int linkCount;
+    public bool carrying = false;
     public bool hookEnd = true;
     private List<Link> links = new List<Link>();
     private GameObject startLink;
@@ -51,6 +54,14 @@ public class Chain : MonoBehaviour
             hookHinge.anchor = new Vector2(0, 4);
             foreach (Link link in links)
                 link.links.Add(newHook.GetComponent<Link>());
+
+            if (carrying)
+            {
+                carryObject.transform.parent = newHook.transform;
+                carryObject.transform.localPosition = carryPlace;
+                carryObject.GetComponent<Rigidbody2D>().isKinematic = true;
+                carryObject.layer = LayerMask.NameToLayer("HookCarry");
+            }
         }
 
         transform.eulerAngles = startRot;

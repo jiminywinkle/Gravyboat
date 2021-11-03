@@ -11,6 +11,7 @@ public class Debris : MonoBehaviour
     void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
+        GetComponent<Rigidbody2D>().AddTorque(Random.Range(-100, 100));
     }
 
     // Update is called once per frame

@@ -76,6 +76,7 @@ public class MainBody : MonoBehaviour
         rigid.angularVelocity = 0;
         rigid.freezeRotation = true;
         rigid.gravityScale = 0;
+        WingCheck();
         direction = DirectionCheck();
         transform.eulerAngles = new Vector3(0, 0, SnapRotation(transform.eulerAngles.z));
         collider.radius = 3.36f;
@@ -225,7 +226,7 @@ public class MainBody : MonoBehaviour
     Direction DirectionCheck()
     {
         Direction result;
-        if (Mathf.Abs(rigid.velocity.y) > Mathf.Abs(rigid.velocity.x))
+        if (Mathf.Abs(rigid.velocity.x) < 10)
         {
             if (rigid.velocity.y > 0)
                 result = Direction.Up;
@@ -240,6 +241,41 @@ public class MainBody : MonoBehaviour
                 result = Direction.Left;
         }
         return result;
+    }
+
+    private void WingCheck()
+    {
+        foreach (Wing wing in wings)
+        {
+            Transform wingSprite = wing.gameObject.transform.GetChild(0);
+            float snapWing = SnapRotation(wingSprite.eulerAngles.z);
+            if (transform.GetChild(0).eulerAngles.z > SnapRotation(transform.GetChild(0).eulerAngles.z))
+                snapWing -= 90;
+            else
+                snapWing += 90;
+            switch (snapWing)
+            {
+                case (0):
+                case (360):
+                    wing.direction = Direction.Up;
+                    break;
+                case (90):
+                case (-270):
+                case (450):
+                    wing.direction = Direction.Left;
+                    break;
+                case (180):
+                case (-180):
+                    wing.direction = Direction.Down;
+                    break;
+                case (-90):
+                case (270):
+                case (-450):
+                    wing.direction = Direction.Right;
+                    break;
+            }
+            //print(wing.color.ToString() + " " + snapWing.ToString() + " " + wing.direction);
+        }
     }
 
     public void Rotate(bool right)

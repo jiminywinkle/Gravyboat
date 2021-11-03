@@ -9,6 +9,7 @@ TagManager:
   - Body
   - Obstacle
   - Laser
+  - Spawned
   layers:
   - Default
   - TransparentFX
@@ -22,8 +23,8 @@ TagManager:
   - Bugs
   - Obstacle
   - Debris
-  - 
-  - 
+  - Hook
+  - HookCarry
   - 
   - 
   - 

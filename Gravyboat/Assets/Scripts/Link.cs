@@ -49,6 +49,13 @@ public class Link : MonoBehaviour
                         link.dead = true;
                         link.gameObject.layer = LayerMask.NameToLayer("Debris");
                     }
+                    Chain chainScript = chain.GetComponent<Chain>();
+                    if (chainScript.carrying)
+                    {
+                        chainScript.carryObject.transform.parent = null;
+                        chainScript.carryObject.GetComponent<Rigidbody2D>().isKinematic = false;
+                        chainScript.carryObject.layer = LayerMask.NameToLayer("Default");
+                    }
                     chain.Purge(index);
                 }
             }

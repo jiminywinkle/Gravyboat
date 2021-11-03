@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6228818472410963515}
   - component: {fileID: 8938184270617135157}
   - component: {fileID: 4422150579849012609}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Hook
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -398,5 +398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a7cf5b7cecdf29439e88b001df97c14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
   dead: 0
   links: []
+  chain: {fileID: 0}
