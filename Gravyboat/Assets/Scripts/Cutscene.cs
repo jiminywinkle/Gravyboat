@@ -8,6 +8,7 @@ public class Cutscene : MonoBehaviour
 {
     public SpriteRenderer image;
     public Sprite[] images;
+    public List<int> times = new List<int>();
     public Image black;
     public string location;
     private float blackAmount = 1;
@@ -40,7 +41,7 @@ public class Cutscene : MonoBehaviour
                 black.color = new Color(black.color.r, black.color.g, black.color.b, blackAmount);
                 yield return null;
             }
-            showTime = 3;
+            showTime = times[i];
             while (showTime > 0)
             {
                 showTime -= 1 * Time.deltaTime;

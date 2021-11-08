@@ -107,7 +107,7 @@ public class Bug : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (active && MainBody.flying)
+        if (active && MainBody.flying && MainBody.controllable)
         {
             //RaycastHit2D[] hit = Physics2D.CircleCastAll(transform.position, 2f, raycastDir, Mathf.Infinity, mask);
             Debug.DrawRay(transform.position, raycastDir * 10);
