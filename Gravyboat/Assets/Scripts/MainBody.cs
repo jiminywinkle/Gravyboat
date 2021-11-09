@@ -9,7 +9,7 @@ public class MainBody : MonoBehaviour
     [HideInInspector]
     public static Direction direction;
     public Direction flyCommand = Direction.Right;
-    public static bool controllable = false;
+    public bool controllable = false;
     public static bool dead = false;
     public static bool flying = true;
     public static MainBody instance;
@@ -31,6 +31,11 @@ public class MainBody : MonoBehaviour
     private float rotateTimer = 0;
     private bool rotating = false;
 
+    public AudioClip extend;
+    public AudioClip retract;
+    public AudioClip shoot;
+    private AudioSource audioSrc;
+
 
     private void Awake()
     {
@@ -51,6 +56,7 @@ public class MainBody : MonoBehaviour
             //joints.Add(wings[i].GetComponent<FixedJoint2D>());
             colliders.Add(wings[i].GetComponent<PolygonCollider2D>());
         }
+        audioSrc = GetComponent<AudioSource>();
         collider = GetComponent<CircleCollider2D>();
         rigid = GetComponent<Rigidbody2D>();
         gravityScale = rigid.gravityScale;
@@ -67,6 +73,7 @@ public class MainBody : MonoBehaviour
 
     public void Extend()
     {
+        audioSrc.PlayOneShot(extend);
         for (int i = 0; i < wings.Count; i++)
         {
             animators[i].SetTrigger("Extending");
@@ -84,6 +91,7 @@ public class MainBody : MonoBehaviour
 
     public void Retract()
     {
+        audioSrc.PlayOneShot(retract);
         for (int i = 0; i < wings.Count; i++)
         {
             animators[i].SetTrigger("Retracting");
@@ -152,6 +160,7 @@ public class MainBody : MonoBehaviour
                     {
                         if (Input.GetButtonDown("Laser") && laserTimer <= 0)
                         {
+                            audioSrc.PlayOneShot(shoot);
                             eyeLight.intensity = 5;
                             laserTimer = 1;
                             GameObject shot = Instantiate(laser, pupil.transform.position, Quaternion.identity);
@@ -194,9 +203,7 @@ public class MainBody : MonoBehaviour
     {
         if (flying)
         {
-            dead = true;
-            rigid.freezeRotation = false;
-            rigid.gravityScale = 5;
+            StartCoroutine(Die());
             /* Can't just use the Break() function because that would alter the list as it's iterating. The player is already dead so removing the list elements doesn't matter anyway
             foreach (Wing wing in wings)
             {
@@ -206,6 +213,18 @@ public class MainBody : MonoBehaviour
                 wing.animator.enabled = false;
             }
             */
+        }
+    }
+
+    public IEnumerator Die()
+    {
+        dead = true;
+        rigid.freezeRotation = false;
+        rigid.gravityScale = 5;
+        while (eyeWhite.transform.localScale.y > 0)
+        {
+            eyeWhite.transform.localScale = new Vector3(eyeWhite.transform.localScale.x, eyeWhite.transform.localScale.y - 1*Time.deltaTime, eyeWhite.transform.localScale.z);
+            yield return null;
         }
     }
 

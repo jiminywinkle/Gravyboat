@@ -16,12 +16,18 @@ public class Bug : MonoBehaviour
     private WorldInfo.Color color;
     private Light2D light;
     private SpriteRenderer sprite;
+    private Collider2D collider;
     private Vector3 raycastDir;
     private float deactivateCount = 1f;
 
     private float midPoint;
     private float topSection;
     private float bottomSection;
+
+    public AudioClip place;
+    public AudioClip remove;
+    public AudioClip effect;
+    private AudioSource audioSrc;
 
     [SerializeField] private LayerMask mask;
 
@@ -30,8 +36,10 @@ public class Bug : MonoBehaviour
     private void Start()
     {
         color = SceneStuff.selectedColor;
+        collider = GetComponent<Collider2D>();
         light = GetComponentInChildren<Light2D>();
         sprite = GetComponentInChildren<SpriteRenderer>();
+        audioSrc = GetComponent<AudioSource>();
 
         switch (color)
         {
@@ -100,6 +108,8 @@ public class Bug : MonoBehaviour
 
         SceneStuff.instance.BugChecker();
 
+        audioSrc.PlayOneShot(place);
+
         location.GetComponent<BugPlacer>().positions[(int)direction] = true;
         transform.eulerAngles = new Vector3(0, 0, Random.Range(0, 360f));
     }
@@ -107,7 +117,7 @@ public class Bug : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (active && MainBody.flying && MainBody.controllable)
+        if (active && MainBody.flying && MainBody.instance.controllable)
         {
             //RaycastHit2D[] hit = Physics2D.CircleCastAll(transform.position, 2f, raycastDir, Mathf.Infinity, mask);
             Debug.DrawRay(transform.position, raycastDir * 10);
@@ -213,7 +223,11 @@ public class Bug : MonoBehaviour
                                         break;
                                 }
                                 if (used)
+                                {
                                     StartCoroutine(Deactivate());
+                                    wing.StartCoroutine(wing.Alight());
+                                    audioSrc.PlayOneShot(effect);
+                                }
                                 break;
                             }
                         }
@@ -244,12 +258,29 @@ public class Bug : MonoBehaviour
     {
         if (Input.GetMouseButton(1) && active)
         {
-            Destroy(this.gameObject);
+            collider.enabled = false;
+            audioSrc.PlayOneShot(remove);
+            StartCoroutine(Remove());
             Destroy(TEST);
             location.GetComponent<BugPlacer>().positions[(int)direction] = false;
             SceneStuff.instance.colorNums[(int)color]++;
             UIBug.instance.ColorStuff(false, 1, color);
         }
+    }
+
+    IEnumerator Remove()
+    {
+        active = false;
+        float alpha = 1;
+        float intensity = light.intensity;
+        while (alpha > 0)
+        {
+            alpha -= 1 * Time.deltaTime;
+            light.intensity = alpha * intensity;
+            sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, alpha);
+            yield return null;
+        }
+        Destroy(gameObject);
     }
 
     public void ForceColor(WorldInfo.Color chosen)

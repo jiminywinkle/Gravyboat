@@ -28,6 +28,9 @@ public class SceneStuff : MonoBehaviour
     [HideInInspector]
     public int[] colorNums = new int[4];
 
+    public AudioClip click;
+    private AudioSource audioSrc;
+
     private void Awake()
     {
         colorNums[0] = redNum;
@@ -41,6 +44,13 @@ public class SceneStuff : MonoBehaviour
     {
         if (!levelsSeen.Contains(SceneManager.GetActiveScene().buildIndex))
             levelsSeen.Add(SceneManager.GetActiveScene().buildIndex);
+
+        if (PlayerPrefs.GetInt("MaxLevel") < SceneManager.GetActiveScene().buildIndex)
+            PlayerPrefs.SetInt("MaxLevel", SceneManager.GetActiveScene().buildIndex);
+
+        audioSrc = GetComponent<AudioSource>();
+        audioSrc.loop = true;
+        audioSrc.Play();
 
         Indicator indicate = Instantiate(indicator).GetComponent<Indicator>();
         indicate.direction = indicatorDirection;
@@ -86,23 +96,27 @@ public class SceneStuff : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Red") && colorNums[0] > 0)
+        if (Input.GetButtonDown("Red") && colorNums[0] > 0 && selectedColor != Color.Red)
         {
+            audioSrc.PlayOneShot(click);
             selectedColor = Color.Red;
             UIBug.instance.ColorStuff(true);
         }
-        else if (Input.GetButtonDown("Blue") && colorNums[1] > 0)
+        else if (Input.GetButtonDown("Blue") && colorNums[1] > 0 && selectedColor != Color.Blue)
         {
+            audioSrc.PlayOneShot(click);
             selectedColor = Color.Blue;
             UIBug.instance.ColorStuff(true);
         }
-        else if (Input.GetButtonDown("Yellow") && colorNums[2] > 0)
+        else if (Input.GetButtonDown("Yellow") && colorNums[2] > 0 && selectedColor != Color.Yellow)
         {
+            audioSrc.PlayOneShot(click);
             selectedColor = Color.Yellow;
             UIBug.instance.ColorStuff(true);
         }
-        else if (Input.GetButtonDown("Green") && colorNums[3] > 0)
+        else if (Input.GetButtonDown("Green") && colorNums[3] > 0 && selectedColor != Color.Green)
         {
+            audioSrc.PlayOneShot(click);
             selectedColor = Color.Green;
             UIBug.instance.ColorStuff(true);
         }

@@ -27134,6 +27134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Controller
       objectReference: {fileID: 0}
+    - target: {fileID: 4833216350311480493, guid: 9c40b636c189ab04390eb6d283f2c06f, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: ce1832aca7b2b8745b271e73b2f1bfeb, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c40b636c189ab04390eb6d283f2c06f, type: 3}
 --- !u!1001 &1759939107
@@ -27213,12 +27217,28 @@ PrefabInstance:
       value: 22.5
       objectReference: {fileID: 0}
     - target: {fileID: 2315954372107906017, guid: 1b4faaf861c6e2c49a30d4d75e297141, type: 3}
+      propertyPath: shoot
+      value: 
+      objectReference: {fileID: 8300000, guid: b92cf018050b65945aa1b17551fdd381, type: 3}
+    - target: {fileID: 2315954372107906017, guid: 1b4faaf861c6e2c49a30d4d75e297141, type: 3}
+      propertyPath: extend
+      value: 
+      objectReference: {fileID: 8300000, guid: 0b14a96fd0d48864596fc638fcb6574d, type: 3}
+    - target: {fileID: 2315954372107906017, guid: 1b4faaf861c6e2c49a30d4d75e297141, type: 3}
+      propertyPath: retract
+      value: 
+      objectReference: {fileID: 8300000, guid: ba2d9848209d99d40943cd852179d3ae, type: 3}
+    - target: {fileID: 2315954372107906017, guid: 1b4faaf861c6e2c49a30d4d75e297141, type: 3}
       propertyPath: moveSpeed
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2315954372107906017, guid: 1b4faaf861c6e2c49a30d4d75e297141, type: 3}
       propertyPath: flyCommand
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2315954372107906017, guid: 1b4faaf861c6e2c49a30d4d75e297141, type: 3}
+      propertyPath: controllable
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6571215822061713158, guid: 1b4faaf861c6e2c49a30d4d75e297141, type: 3}
       propertyPath: m_Name

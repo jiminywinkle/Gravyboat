@@ -11,11 +11,13 @@ public class Link : MonoBehaviour
     private HingeJoint2D hinge;
     private Rigidbody2D rigid;
     private SpriteRenderer sprite;
+    private AudioSource audioSrc;
     private float alpha = 2;
 
     // Start is called before the first frame update
     void Start()
     {
+        audioSrc = GetComponent<AudioSource>();
         rigid = GetComponent<Rigidbody2D>();
         hinge = GetComponent<HingeJoint2D>();
         sprite = GetComponent<SpriteRenderer>();
@@ -39,6 +41,7 @@ public class Link : MonoBehaviour
             if (collision.collider.tag == "Laser")
             {
                 rigid.AddForce((transform.position - collision.transform.position) * 75, ForceMode2D.Impulse);
+                audioSrc.Play();
                 if (!dead)
                 {
                     Destroy(hinge);

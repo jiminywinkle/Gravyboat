@@ -11,11 +11,13 @@ public class LaserBeam : MonoBehaviour
     private SpriteRenderer sprite;
     private PolygonCollider2D collider;
     private Light2D light;
+    private AudioSource audioSrc;
 
     // Start is called before the first frame update
     void Start()
     {
         initTimer = timer;
+        audioSrc = GetComponent<AudioSource>();
         sprite = GetComponent<SpriteRenderer>();
         collider = GetComponent<PolygonCollider2D>();
         light = GetComponent<Light2D>();
@@ -25,15 +27,17 @@ public class LaserBeam : MonoBehaviour
     {
         if (collision.tag == "Wing")
         {
+            audioSrc.Play();
             GameObject wing = collision.gameObject;
             wing.AddComponent<Rigidbody2D>();
             wing.transform.parent = null;
-            MainBody.dead = true;
+            MainBody.instance.StartCoroutine(MainBody.instance.Die());
             collider.enabled = false;
         }
         else if (collision.tag == "Body")
         {
-            MainBody.dead = true;
+            audioSrc.Play();
+            MainBody.instance.StartCoroutine(MainBody.instance.Die());
             collider.enabled = false;
         }
     }

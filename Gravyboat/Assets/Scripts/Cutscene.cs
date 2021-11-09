@@ -9,15 +9,22 @@ public class Cutscene : MonoBehaviour
     public SpriteRenderer image;
     public Sprite[] images;
     public List<int> times = new List<int>();
+    public List<AudioClip> clips = new List<AudioClip>();
     public Image black;
     public string location;
+    private AudioSource audioSrc;
     private float blackAmount = 1;
+    private float audioAmount = 0;
     private float showTime = 3;
 
     // Start is called before the first frame update
     void Start()
     {
+        if (PlayerPrefs.GetInt("MaxLevel") < SceneManager.GetActiveScene().buildIndex)
+            PlayerPrefs.SetInt("MaxLevel", SceneManager.GetActiveScene().buildIndex);
+
         black.color = new Color(black.color.r, black.color.g, black.color.b, 1);
+        audioSrc = GetComponent<AudioSource>();
         StartCoroutine(Anim());
     }
 
@@ -34,11 +41,15 @@ public class Cutscene : MonoBehaviour
     {
         for (int i = 0; i < images.Length; i++)
         {
+            audioSrc.volume = 0;
+            audioSrc.PlayOneShot(clips[i]);
             image.sprite = images[i];
             while (blackAmount > 0)
             {
                 blackAmount -= 1 * Time.deltaTime;
                 black.color = new Color(black.color.r, black.color.g, black.color.b, blackAmount);
+                audioAmount += 1 * Time.deltaTime;
+                audioSrc.volume = audioAmount;
                 yield return null;
             }
             showTime = times[i];
@@ -51,8 +62,11 @@ public class Cutscene : MonoBehaviour
             {
                 blackAmount += 1 * Time.deltaTime;
                 black.color = new Color(black.color.r, black.color.g, black.color.b, blackAmount);
+                audioAmount -= 1 * Time.deltaTime;
+                audioSrc.volume = audioAmount;
                 yield return null;
             }
+            audioSrc.Stop();
         }
         SceneManager.LoadScene(location);
     }

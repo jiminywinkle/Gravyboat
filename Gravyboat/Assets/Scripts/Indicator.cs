@@ -16,7 +16,8 @@ public class Indicator : MonoBehaviour
     public GameObject dummy;
     public GameObject icon;
     public Transform moveSpot;
-    private SpriteRenderer sprite;
+    public List<SpriteRenderer> sprites = new List<SpriteRenderer>();
+    private AudioSource audioSrc;
     private Light2D light;
 
     private bool forward = true;
@@ -26,6 +27,7 @@ public class Indicator : MonoBehaviour
     void Start()
     {
         light = GetComponentInChildren<Light2D>();
+        audioSrc = GetComponent<AudioSource>();
 
         transform.position = startPos;
         transform.eulerAngles = startRot;
@@ -87,8 +89,7 @@ public class Indicator : MonoBehaviour
             countdown -= 1 * Time.deltaTime;
             yield return null;
         }
-        Destroy(gameObject);
-        MainBody.controllable = true;
+        StartCoroutine(Die());
     }
 
     IEnumerator Flash()
@@ -103,12 +104,28 @@ public class Indicator : MonoBehaviour
         }
     }
 
+    IEnumerator Die()
+    {
+        audioSrc.Play();
+        float alpha = 1;
+        while (alpha > 0)
+        {
+            foreach (SpriteRenderer sprite in sprites)
+            {
+                sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, alpha);
+            }
+            alpha -= 1 * Time.deltaTime;
+            yield return null; 
+        }
+        Destroy(gameObject);
+        MainBody.instance.controllable = true;
+    }
+
     private void OnMouseDown()
     {
         if (clickable)
         {
-            Destroy(gameObject);
-            MainBody.controllable = true;
+            StartCoroutine(Die());
         }
     }
 }
