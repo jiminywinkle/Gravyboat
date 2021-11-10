@@ -20,7 +20,9 @@ public class Cutscene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (PlayerPrefs.GetInt("MaxLevel") < SceneManager.GetActiveScene().buildIndex)
+        if (!PlayerPrefs.HasKey("MaxLevel"))
+            PlayerPrefs.SetInt("MaxLevel", 0);
+        else if (PlayerPrefs.GetInt("MaxLevel") < SceneManager.GetActiveScene().buildIndex)
             PlayerPrefs.SetInt("MaxLevel", SceneManager.GetActiveScene().buildIndex);
 
         black.color = new Color(black.color.r, black.color.g, black.color.b, 1);

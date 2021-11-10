@@ -78,6 +78,7 @@ public class MainBody : MonoBehaviour
         {
             animators[i].SetTrigger("Extending");
             colliders[i].enabled = true;
+            wings[i].gameObject.GetComponentInChildren<Light2D>().enabled = true;
         }
         flying = true;
         rigid.angularVelocity = 0;
@@ -96,6 +97,7 @@ public class MainBody : MonoBehaviour
         {
             animators[i].SetTrigger("Retracting");
             colliders[i].enabled = false;
+            wings[i].gameObject.GetComponentInChildren<Light2D>().enabled = false;
         }
         flying = false;
         rigid.freezeRotation = false;

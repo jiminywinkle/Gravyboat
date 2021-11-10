@@ -9062,11 +9062,11 @@ MonoBehaviour:
 
 
     The
-    direction the bugs face is based on where you put them
+    direction the bugs face is based on which portion of the obstacle they''re placed
+    on
 
 
-    Right click to remove
-    all the bugs now'
+    Right click to remove all the bugs now'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
   m_sharedMaterial: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
