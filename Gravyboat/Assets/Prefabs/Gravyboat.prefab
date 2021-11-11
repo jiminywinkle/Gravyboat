@@ -94,6 +94,7 @@ MonoBehaviour:
   stunTimer: 1
   moveSpeed: 0
   gravityScale: 0
+  rotating: 0
   extend: {fileID: 8300000, guid: 08b2134f606b1254886a2c8fa0fa10eb, type: 3}
   retract: {fileID: 8300000, guid: 726112a93fb9ec544aef34132f481a54, type: 3}
   shoot: {fileID: 8300000, guid: b92cf018050b65945aa1b17551fdd381, type: 3}
@@ -109,7 +110,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 0
   Mute: 0

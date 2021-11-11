@@ -29,7 +29,8 @@ public class MainBody : MonoBehaviour
     public float gravityScale;
     private float laserTimer = 0;
     private float rotateTimer = 0;
-    private bool rotating = false;
+    [HideInInspector]
+    public bool rotating = false;
 
     public AudioClip extend;
     public AudioClip retract;

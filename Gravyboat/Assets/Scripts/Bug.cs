@@ -117,121 +117,125 @@ public class Bug : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (active && MainBody.flying && MainBody.instance.controllable)
+        if (active)
         {
-            //RaycastHit2D[] hit = Physics2D.CircleCastAll(transform.position, 2f, raycastDir, Mathf.Infinity, mask);
-            Debug.DrawRay(transform.position, raycastDir * 10);
-            RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, raycastDir, 80, mask);
-            //for (int j = 0; j < hit.Length; j++)
-            //    print(hit[j].collider.name);
-            for (int i = 1; i < hit.Length; i++)
+            // Currently, the bug will not function while Gravyboat is rotating because rotating while already rotating is bugged and I don't feel like fixing it
+            if (MainBody.flying && MainBody.instance.controllable && !MainBody.instance.rotating)
             {
-                if (hit[i].collider != null)
+                //RaycastHit2D[] hit = Physics2D.CircleCastAll(transform.position, 2f, raycastDir, Mathf.Infinity, mask);
+                Debug.DrawRay(transform.position, raycastDir * 10);
+                RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, raycastDir, 80, mask);
+                //for (int j = 0; j < hit.Length; j++)
+                //    print(hit[j].collider.name);
+                for (int i = 1; i < hit.Length; i++)
                 {
-                    if (hit[i].collider.tag == "Obstacle")
-                        return;
-                    else if ((hit[i].collider.tag == "Wing" && Vector2.Distance(hit[i].point, MainBody.instance.gameObject.transform.position) < 7.5f) || hit[i].collider.tag == "Body")
+                    if (hit[i].collider != null)
                     {
-                        foreach (Wing wing in MainBody.wings)
+                        if (hit[i].collider.tag == "Obstacle")
+                            return;
+                        else if ((hit[i].collider.tag == "Wing" && Vector2.Distance(hit[i].point, MainBody.instance.gameObject.transform.position) < 7.5f) || hit[i].collider.tag == "Body")
                         {
-                            if (wing.color == color)
+                            foreach (Wing wing in MainBody.wings)
                             {
-                                bool used = false;
+                                if (wing.color == color)
+                                {
+                                    bool used = false;
 
-                                // Remember: Up, Down, Left, Right
-                                switch (direction)
-                                {
-                                    case (Direction)0:
-                                        switch (wing.direction)
-                                        {
-                                            // Up and Up pushes body upward
-                                            case (Direction)0:
-                                                MainBody.direction = Direction.Up;
-                                                used = true;
-                                                break;
-                                            // Up and Left rotates body right
-                                            case (Direction)2:
-                                                MainBody.instance.Rotate(true);
-                                                used = true;
-                                                break;
-                                            // Up and Right rotates body left
-                                            case (Direction)3:
-                                                MainBody.instance.Rotate(false);
-                                                used = true;
-                                                break;
-                                        }
-                                        break;
-                                    case (Direction)1:
-                                        switch (wing.direction)
-                                        {
-                                            // Down and Down pushes body downward
-                                            case (Direction)1:
-                                                MainBody.direction = Direction.Down;
-                                                used = true;
-                                                break;
-                                            // Down and Left rotates body left
-                                            case (Direction)2:
-                                                MainBody.instance.Rotate(false);
-                                                used = true;
-                                                break;
-                                            // Down and Right rotates body right
-                                            case (Direction)3:
-                                                MainBody.instance.Rotate(true);
-                                                used = true;
-                                                break;
-                                        }
-                                        break;
-                                    case (Direction)2:
-                                        switch (wing.direction)
-                                        {
-                                            // Left and Up rotates body left
-                                            case (Direction)0:
-                                                MainBody.instance.Rotate(false);
-                                                used = true;
-                                                break;
-                                            // Left and Down rotates body right
-                                            case (Direction)1:
-                                                MainBody.instance.Rotate(true);
-                                                used = true;
-                                                break;
-                                            // Left and Left pushes body left
-                                            case (Direction)2:
-                                                MainBody.direction = Direction.Left;
-                                                used = true;
-                                                break;
-                                        }
-                                        break;
-                                    case (Direction)3:
-                                        switch (wing.direction)
-                                        {
-                                            // Right and Up rotates body right
-                                            case (Direction)0:
-                                                MainBody.instance.Rotate(true);
-                                                used = true;
-                                                break;
-                                            // Right and Down rotates body left
-                                            case (Direction)1:
-                                                MainBody.instance.Rotate(false);
-                                                used = true;
-                                                break;
-                                            // Right and Right pushes body right
-                                            case (Direction)3:
-                                                MainBody.direction = Direction.Right;
-                                                used = true;
-                                                break;
-                                        }
-                                        break;
+                                    // Remember: Up, Down, Left, Right
+                                    switch (direction)
+                                    {
+                                        case (Direction)0:
+                                            switch (wing.direction)
+                                            {
+                                                // Up and Up pushes body upward
+                                                case (Direction)0:
+                                                    MainBody.direction = Direction.Up;
+                                                    used = true;
+                                                    break;
+                                                // Up and Left rotates body right
+                                                case (Direction)2:
+                                                    MainBody.instance.Rotate(true);
+                                                    used = true;
+                                                    break;
+                                                // Up and Right rotates body left
+                                                case (Direction)3:
+                                                    MainBody.instance.Rotate(false);
+                                                    used = true;
+                                                    break;
+                                            }
+                                            break;
+                                        case (Direction)1:
+                                            switch (wing.direction)
+                                            {
+                                                // Down and Down pushes body downward
+                                                case (Direction)1:
+                                                    MainBody.direction = Direction.Down;
+                                                    used = true;
+                                                    break;
+                                                // Down and Left rotates body left
+                                                case (Direction)2:
+                                                    MainBody.instance.Rotate(false);
+                                                    used = true;
+                                                    break;
+                                                // Down and Right rotates body right
+                                                case (Direction)3:
+                                                    MainBody.instance.Rotate(true);
+                                                    used = true;
+                                                    break;
+                                            }
+                                            break;
+                                        case (Direction)2:
+                                            switch (wing.direction)
+                                            {
+                                                // Left and Up rotates body left
+                                                case (Direction)0:
+                                                    MainBody.instance.Rotate(false);
+                                                    used = true;
+                                                    break;
+                                                // Left and Down rotates body right
+                                                case (Direction)1:
+                                                    MainBody.instance.Rotate(true);
+                                                    used = true;
+                                                    break;
+                                                // Left and Left pushes body left
+                                                case (Direction)2:
+                                                    MainBody.direction = Direction.Left;
+                                                    used = true;
+                                                    break;
+                                            }
+                                            break;
+                                        case (Direction)3:
+                                            switch (wing.direction)
+                                            {
+                                                // Right and Up rotates body right
+                                                case (Direction)0:
+                                                    MainBody.instance.Rotate(true);
+                                                    used = true;
+                                                    break;
+                                                // Right and Down rotates body left
+                                                case (Direction)1:
+                                                    MainBody.instance.Rotate(false);
+                                                    used = true;
+                                                    break;
+                                                // Right and Right pushes body right
+                                                case (Direction)3:
+                                                    MainBody.direction = Direction.Right;
+                                                    used = true;
+                                                    break;
+                                            }
+                                            break;
+                                    }
+                                    if (used)
+                                    {
+                                        StartCoroutine(Deactivate());
+                                        wing.StartCoroutine(wing.Alight());
+                                        audioSrc.PlayOneShot(effect);
+                                    }
+                                    break;
                                 }
-                                if (used)
-                                {
-                                    StartCoroutine(Deactivate());
-                                    wing.StartCoroutine(wing.Alight());
-                                    audioSrc.PlayOneShot(effect);
-                                }
-                                break;
                             }
+                            return;
                         }
-                        return;
                     }
                 }
             }

@@ -50,7 +50,7 @@ public class Cutscene : MonoBehaviour
             {
                 blackAmount -= 1 * Time.deltaTime;
                 black.color = new Color(black.color.r, black.color.g, black.color.b, blackAmount);
-                audioAmount += 1 * Time.deltaTime;
+                audioAmount += .5f * Time.deltaTime;
                 audioSrc.volume = audioAmount;
                 yield return null;
             }
@@ -64,7 +64,7 @@ public class Cutscene : MonoBehaviour
             {
                 blackAmount += 1 * Time.deltaTime;
                 black.color = new Color(black.color.r, black.color.g, black.color.b, blackAmount);
-                audioAmount -= 1 * Time.deltaTime;
+                audioAmount -= .5f * Time.deltaTime;
                 audioSrc.volume = audioAmount;
                 yield return null;
             }

@@ -1859,7 +1859,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8034809261094661040, guid: 8bfdf5a0af574b84fb6f193417affa7b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 78.7
+      value: 79.6
       objectReference: {fileID: 0}
     - target: {fileID: 8034809261094661040, guid: 8bfdf5a0af574b84fb6f193417affa7b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3806,7 +3806,7 @@ PrefabInstance:
     - target: {fileID: 3120653586182273637, guid: f0991a431e2325e4b82220d7716e3605, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 8afbe84f32ac3444f8d7119f9233121b, type: 3}
+      objectReference: {fileID: 21300000, guid: 7eed1201ee5a97848b8657598c353f09, type: 3}
     - target: {fileID: 3120653586182273642, guid: f0991a431e2325e4b82220d7716e3605, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -10697,7 +10697,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8034809261094661040, guid: 8bfdf5a0af574b84fb6f193417affa7b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -50.2
+      value: -52.1
       objectReference: {fileID: 0}
     - target: {fileID: 8034809261094661040, guid: 8bfdf5a0af574b84fb6f193417affa7b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -12801,6 +12801,10 @@ PrefabInstance:
     - target: {fileID: 4812292976884989330, guid: 9c40b636c189ab04390eb6d283f2c06f, type: 3}
       propertyPath: m_Name
       value: Controller
+      objectReference: {fileID: 0}
+    - target: {fileID: 4833216350311480493, guid: 9c40b636c189ab04390eb6d283f2c06f, type: 3}
+      propertyPath: m_Volume
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 4833216350311480493, guid: 9c40b636c189ab04390eb6d283f2c06f, type: 3}
       propertyPath: m_audioClip

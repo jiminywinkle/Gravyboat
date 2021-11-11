@@ -30,6 +30,17 @@ public class MainMenu : MonoBehaviour
         StartCoroutine(Blackness());
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (levels.activeSelf)
+                CloseLevels();
+            else
+                Quit();
+        }
+    }
+
     IEnumerator Blackness()
     {
         while (opacity > 0)
@@ -82,7 +93,6 @@ public class MainMenu : MonoBehaviour
 
     public IEnumerator Load(string level)
     {
-        print(false);
         audioSrc.PlayOneShot(click);
         yield return new WaitForSeconds(.45f);
         SceneManager.LoadScene(level);

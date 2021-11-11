@@ -1405,6 +1405,10 @@ PrefabInstance:
       value: Controller
       objectReference: {fileID: 0}
     - target: {fileID: 4833216350311480493, guid: 9c40b636c189ab04390eb6d283f2c06f, type: 3}
+      propertyPath: m_Volume
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4833216350311480493, guid: 9c40b636c189ab04390eb6d283f2c06f, type: 3}
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: ba49a0135d0cf3547901f235a32e2d33, type: 3}
@@ -1603,7 +1607,7 @@ PrefabInstance:
     - target: {fileID: 3120653586182273637, guid: f0991a431e2325e4b82220d7716e3605, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 8afbe84f32ac3444f8d7119f9233121b, type: 3}
+      objectReference: {fileID: 21300000, guid: 7eed1201ee5a97848b8657598c353f09, type: 3}
     - target: {fileID: 3120653586182273642, guid: f0991a431e2325e4b82220d7716e3605, type: 3}
       propertyPath: m_RootOrder
       value: 7
