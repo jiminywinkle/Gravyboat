@@ -9,6 +9,7 @@ public class SceneStuff : MonoBehaviour
 {
     public static List<int> levelsSeen = new List<int>();
     public static SceneStuff instance;
+    public Texture2D[] cursors = new Texture2D[5];
     public GameObject indicator;
     public GameObject bugs;
     public GameObject TEST;
@@ -89,8 +90,15 @@ public class SceneStuff : MonoBehaviour
             if (found)
             {
                 selectedColor = (Color)i;
+                Cursor.SetCursor(cursors[i + 1], Vector2.zero, CursorMode.Auto);
                 UIBug.instance.ColorStuff(true);
             }
+            else
+                Cursor.SetCursor(cursors[0], Vector2.zero, CursorMode.Auto);
+        }
+        else
+        {
+            Cursor.SetCursor(cursors[(int)selectedColor + 1], Vector2.zero, CursorMode.Auto);
         }
     }
 
@@ -98,24 +106,28 @@ public class SceneStuff : MonoBehaviour
     {
         if (Input.GetButtonDown("Red") && colorNums[0] > 0 && selectedColor != Color.Red)
         {
+            Cursor.SetCursor(cursors[1], Vector2.zero, CursorMode.Auto);
             audioSrc.PlayOneShot(click);
             selectedColor = Color.Red;
             UIBug.instance.ColorStuff(true);
         }
         else if (Input.GetButtonDown("Blue") && colorNums[1] > 0 && selectedColor != Color.Blue)
         {
+            Cursor.SetCursor(cursors[2], Vector2.zero, CursorMode.Auto);
             audioSrc.PlayOneShot(click);
             selectedColor = Color.Blue;
             UIBug.instance.ColorStuff(true);
         }
         else if (Input.GetButtonDown("Yellow") && colorNums[2] > 0 && selectedColor != Color.Yellow)
         {
+            Cursor.SetCursor(cursors[3], Vector2.zero, CursorMode.Auto);
             audioSrc.PlayOneShot(click);
             selectedColor = Color.Yellow;
             UIBug.instance.ColorStuff(true);
         }
         else if (Input.GetButtonDown("Green") && colorNums[3] > 0 && selectedColor != Color.Green)
         {
+            Cursor.SetCursor(cursors[4], Vector2.zero, CursorMode.Auto);
             audioSrc.PlayOneShot(click);
             selectedColor = Color.Green;
             UIBug.instance.ColorStuff(true);

@@ -108,7 +108,8 @@ public class Bug : MonoBehaviour
 
         SceneStuff.instance.BugChecker();
 
-        audioSrc.PlayOneShot(place);
+        if (audioSrc.enabled)
+            audioSrc.PlayOneShot(place);
 
         location.GetComponent<BugPlacer>().positions[(int)direction] = true;
         transform.eulerAngles = new Vector3(0, 0, Random.Range(0, 360f));
@@ -267,8 +268,17 @@ public class Bug : MonoBehaviour
             StartCoroutine(Remove());
             Destroy(TEST);
             location.GetComponent<BugPlacer>().positions[(int)direction] = false;
+
+            // This is needed to make sure that the bugchecker knows to run BEFORE we increment the color count to something other than 0, otherwise it might recognize its own increment
+            bool bugCheck = false;
+            if (SceneStuff.instance.colorNums[(int)SceneStuff.selectedColor] == 0)
+                bugCheck = true;
+
             SceneStuff.instance.colorNums[(int)color]++;
             UIBug.instance.ColorStuff(false, 1, color);
+
+            if (bugCheck)
+                SceneStuff.instance.BugChecker();
         }
     }
 

@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
     public Image black;
+    public Texture2D cursor;
     public AudioClip click;
     public GameObject levels;
     public static MainMenu instance;
@@ -22,6 +23,8 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         levels.SetActive(false);
+
+        Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
 
         audioSrc = GetComponent<AudioSource>();
         audioSrc.loop = true;

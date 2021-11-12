@@ -649,6 +649,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96d70fac0fc528c44b7548e122e80ab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cursor: {fileID: 2800000, guid: 19c0f88bd1c5cde42bbc1efcb4ad672f, type: 3}
   image: {fileID: 1226481704}
   images:
   - {fileID: 21300000, guid: 5bb2787bb99840c4f8d7c4fd2305b661, type: 3}

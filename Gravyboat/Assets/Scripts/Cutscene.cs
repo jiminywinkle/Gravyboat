@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Cutscene : MonoBehaviour
 {
+    public Texture2D cursor;
     public SpriteRenderer image;
     public Sprite[] images;
     public List<int> times = new List<int>();
@@ -24,6 +25,8 @@ public class Cutscene : MonoBehaviour
             PlayerPrefs.SetInt("MaxLevel", 0);
         else if (PlayerPrefs.GetInt("MaxLevel") < SceneManager.GetActiveScene().buildIndex)
             PlayerPrefs.SetInt("MaxLevel", SceneManager.GetActiveScene().buildIndex);
+
+        Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
 
         black.color = new Color(black.color.r, black.color.g, black.color.b, 1);
         audioSrc = GetComponent<AudioSource>();
