@@ -8255,7 +8255,7 @@ MonoBehaviour:
 
 
     Click on the object
-    to place one now'
+    to place a bug, right click to remove'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
   m_sharedMaterial: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
@@ -9070,7 +9070,7 @@ MonoBehaviour:
     on
 
 
-    Right click to remove all the bugs now'
+    Place a bug on each of the four sections to see how the direction changes'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
   m_sharedMaterial: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}

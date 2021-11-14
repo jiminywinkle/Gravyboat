@@ -42,13 +42,13 @@ public class Level2 : MonoBehaviour
         } 
         else if (text2)
         {
-            bool allGone = true;
+            bool allHere = true;
             foreach (bool position in obstacle.positions)
             {
-                if (position)
-                    allGone = false;
+                if (!position)
+                    allHere = false;
             }
-            if (allGone)
+            if (allHere)
             {
                 text3.enabled = true;
                 text4.enabled = true;

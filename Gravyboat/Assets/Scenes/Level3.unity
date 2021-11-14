@@ -6813,7 +6813,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8034809261094661040, guid: 8bfdf5a0af574b84fb6f193417affa7b, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.8946201
+      value: 1.4683305
       objectReference: {fileID: 0}
     - target: {fileID: 8034809261094661040, guid: 8bfdf5a0af574b84fb6f193417affa7b, type: 3}
       propertyPath: m_LocalScale.y
@@ -6825,7 +6825,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8034809261094661040, guid: 8bfdf5a0af574b84fb6f193417affa7b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 27.3
+      value: 25.6
       objectReference: {fileID: 0}
     - target: {fileID: 8034809261094661040, guid: 8bfdf5a0af574b84fb6f193417affa7b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10655,16 +10655,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'These bugs are used to direct Gravyboat''s flight
+  m_text: 'These bugs are bound to Gravyboat and can use their energy to direct their
+    flight
 
 
-    Point a bug perpendicularly
-    towards a matching-colored wing to push it away, rotating Gravyboat like a steering
-    wheel
+    Point a bug perpendicularly towards a matching-colored wing to push
+    it away, rotating Gravyboat like a pinwheel
 
 
-    Pointing a bug towards a wing of a matching color and direction will
-    instead change Gravyboat''s direction of flight'
+    Pointing a bug towards a wing
+    of a matching color and direction will instead change Gravyboat''s direction
+    of flight'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
   m_sharedMaterial: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
@@ -18954,7 +18955,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8034809261094661040, guid: 8bfdf5a0af574b84fb6f193417affa7b, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.3670019
+      value: 0.9227263
       objectReference: {fileID: 0}
     - target: {fileID: 8034809261094661040, guid: 8bfdf5a0af574b84fb6f193417affa7b, type: 3}
       propertyPath: m_LocalScale.y
@@ -18966,7 +18967,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8034809261094661040, guid: 8bfdf5a0af574b84fb6f193417affa7b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.2
+      value: 17.2
       objectReference: {fileID: 0}
     - target: {fileID: 8034809261094661040, guid: 8bfdf5a0af574b84fb6f193417affa7b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -22779,7 +22780,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8034809261094661040, guid: 8bfdf5a0af574b84fb6f193417affa7b, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3.329816
+      value: 2.330838
       objectReference: {fileID: 0}
     - target: {fileID: 8034809261094661040, guid: 8bfdf5a0af574b84fb6f193417affa7b, type: 3}
       propertyPath: m_LocalScale.y
@@ -27459,7 +27460,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press "Space" to proceed once you've figured this out
+  m_text: Press "Space" to proceed once you've experimented a bit
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
   m_sharedMaterial: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}

@@ -2708,11 +2708,12 @@ MonoBehaviour:
   m_text: 'You do the same here
 
 
-    Rotate Gravyboat so that you can push them
-    towards the pipe
+    Use one bug to rotate Gravyboat, then use another
+    to push them towards the pipe
 
 
-    Retract your wings to safely and easily enter the pipe'
+    It''s easier and safer to enter the pipe
+    if you retract your wings'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
   m_sharedMaterial: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
