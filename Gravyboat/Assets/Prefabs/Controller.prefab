@@ -45,11 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cursors:
-  - {fileID: 2800000, guid: 19c0f88bd1c5cde42bbc1efcb4ad672f, type: 3}
-  - {fileID: 2800000, guid: ff5bbffe1ecb4494fbd823e48bd7f4d5, type: 3}
-  - {fileID: 2800000, guid: b952e649326e9ec478cc1cdd389e19eb, type: 3}
-  - {fileID: 2800000, guid: 69e3fa6abf75b5647a6c7b1453a9f2ee, type: 3}
-  - {fileID: 2800000, guid: 08282d47245992e4b97a9747343b646f, type: 3}
+  - {fileID: 2800000, guid: a951fe816b63bff45b78b9fe1ec7f987, type: 3}
+  - {fileID: 2800000, guid: e6b0550cfdff09b4b8978481894de7f8, type: 3}
+  - {fileID: 2800000, guid: 0d6abe299ea26024ba2245e8c6704ea5, type: 3}
+  - {fileID: 2800000, guid: a121be1b00147554bae1910fe69a3175, type: 3}
+  - {fileID: 2800000, guid: 60f4db0aa24807c44af794d9fce0202f, type: 3}
   indicator: {fileID: 3751088698557074299, guid: d1eda5069aeb7264b91776333ae31d92, type: 3}
   bugs: {fileID: 6596368914185947142, guid: dbd4f5fb8f68b1246ac85c86bb2b22a5, type: 3}
   TEST: {fileID: 1066603044407190922, guid: e560f4fcf48cb614c9892883b1f223de, type: 3}
